@@ -118,7 +118,22 @@ RUN_URL = "https://api.wiro.ai/v1/Run/google/gemini-3-pro"
 SYSTEM_PROMPT = """\
 You are an engaging YouTube script writer. Output ONLY valid JSON, nothing else.
 Write narration that sounds natural when read aloud — conversational, vivid, and entertaining.
-Image prompts should be one detailed sentence each."""
+
+For image prompts, use the Nano Banana 2 ULTIMATE PROMPT CHEATSHEET formula:
+[TYPE] + [SUBJECT] + [ACTION] + [SETTING] + [LIGHT] + [CAMERA] + [STYLE] + [TEXTURE] + [COLOR] + [OUTPUT]
+
+TYPE categories: photo, illustration, digital art, 3D render, painting, sketch, cartoon, anime, comic, infographic
+SUBJECT: main focus (person, object, scene)
+ACTION: what the subject is doing
+SETTING: location/environment
+LIGHT: lighting style (cinematic, soft, dramatic, natural, neon, etc.)
+CAMERA: angle/distance (close-up, wide shot, aerial, etc.)
+STYLE: artistic style (realistic, abstract, minimalist, etc.)
+TEXTURE: surface quality (smooth, rough, metallic, etc.)
+COLOR: color scheme (vibrant, monochrome, pastel, etc.)
+OUTPUT: final format (16:9, 4K, high detail, etc.)
+
+Each image prompt should be ONE detailed sentence following this formula."""
 
 USER_PROMPT_TEMPLATE = """\
 Create a listicle script about: "{topic}"
@@ -127,33 +142,35 @@ Return ONLY this JSON (no other text):
 {{
   "title": "catchy video title",
   "intro_narration": "4-5 sentences that hook the viewer, set the stage, and tease what's coming",
-  "intro_image_prompt": "YouTube thumbnail: bold large text reading the video title, vibrant colors, dramatic imagery, high contrast, eye-catching, 16:9",
+  "intro_image_prompt": "Digital art YouTube thumbnail with bold text overlay reading the video title, vibrant colors, dramatic lighting, close-up shot, realistic style, smooth texture, high contrast, 16:9, high detail",
   "sections": [
     {{
       "number": 1,
       "heading": "section heading",
       "narration": "Start with 'Number One, heading!' then 5-7 sentences with interesting facts, details, and smooth transitions",
       "image_prompts": [
-        "FIRST image: detailed image with bold text overlay reading the section heading in the center, cinematic lighting, high quality",
-        "SECOND image: different angle or perspective of the same subject, NO TEXT, purely visual, cinematic"
+        "Photo of section heading text overlay with subject performing action, professional setting, cinematic lighting, medium shot, realistic style, sharp texture, vibrant colors, 16:9, high detail",
+        "Illustration of same subject from different angle performing action, detailed background, soft lighting, wide shot, artistic style, smooth texture, complementary colors, 16:9, high detail"
       ]
     }}
   ],
   "outro_narration": "2-3 sentences wrapping up with a call to action",
-  "outro_image_prompt": "cinematic image relevant to the video topic with a semi-transparent subscribe button and like/thumbs-up button overlaid in the bottom corner, 16:9"
+  "outro_image_prompt": "3D render of video topic scene with semi-transparent subscribe button and like button in corner, professional setting, dramatic lighting, medium shot, realistic style, smooth texture, warm colors, 16:9, high detail"
 }}
 
 Rules:
 - Exactly {num_sections} sections
 - intro_narration: 4-5 engaging sentences that hook the viewer
-- intro_image_prompt: must look like a YouTube thumbnail with the video title as bold readable text embedded in the image
+- intro_image_prompt: must follow Nano Banana 2 formula with YouTube title as text overlay
 - Each section narration MUST begin with announcing the number and heading like "Number One, FlowState AI!" or "Number Three, CodeWhisper Pro!" followed by 5-7 detailed sentences, conversational tone
 - image_prompts: REQUIRED array of exactly {images_per_section} prompts per section
+  - ALL prompts MUST follow the Nano Banana 2 formula: [TYPE] + [SUBJECT] + [ACTION] + [SETTING] + [LIGHT] + [CAMERA] + [STYLE] + [TEXTURE] + [COLOR] + [OUTPUT]
   - The FIRST prompt MUST include bold readable text overlay of the section heading
   - All OTHER prompts must be different angles, views, or perspectives of the same subject with NO TEXT, purely visual imagery
   - Each prompt must be unique and strictly relevant to the section topic
+  - Use specific TYPE categories: photo, illustration, digital art, 3D render, painting, sketch, cartoon, anime, comic, infographic
 - outro_narration: 2-3 sentences with call to action
-- outro_image_prompt: must be a visually striking image RELEVANT to the video topic, with subscribe and like/thumbs-up buttons overlaid naturally in a corner — NOT a generic end screen
+- outro_image_prompt: must follow Nano Banana 2 formula with subscribe and like buttons overlaid naturally in a corner — NOT a generic end screen
 - All narration should sound natural when spoken aloud"""
 
 SUBTITLES_ADDENDUM = """
